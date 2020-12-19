@@ -1,3 +1,3 @@
 # Pyspiro
 
-A basic image spiral drawer
+A basic image spiro drawer
