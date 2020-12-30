@@ -5,12 +5,12 @@ with open('README.md', 'r') as f:
 
 setup(
     name='pyspiro',
-    version='0.1.0',
+    version='2020.12.29',
     author='nixbytes',
     author_email='',
     description='A utility for creating spiro graphs',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='',
-    packages=find_packages('src')
+    packages=find_packages('pyspiro')
 )
