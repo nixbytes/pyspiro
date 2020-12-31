@@ -1,5 +1,6 @@
 # A class that draws a Spirograph
 import turtle
+import math
 from datetime import datetime
 from fractions import gcd
 
@@ -38,3 +39,24 @@ class Spiro:
         self.k = r / float(R)
         self.t.color(*col)
         self.a = 0
+
+    def restart(self):
+        self.drawing_complete = False
+        self.t.showturtle()
+        self.t.up()
+        R, k, l = self.R, self.k, self.l
+        a = 0.0
+        """
+        Equation for SpiroGraph
+        The mathical model:
+
+        x = R * ((1 - k) * math.cos(a) + l * k * math.cos((1 - k) * a / k))
+        y = R * ((1 - k) * math.sin(a) + l * k * math.sin((1 - k) * a / k))
+        
+        These curves are called hypotrochoids and epitrochoids. 
+
+        """
+        x = R * ((1 - k) * math.cos(a) + l * k * math.cos((1 - k) * a / k))
+        y = R * ((1 - k) * math.sin(a) + l * k * math.sin((1 - k) * a / k))
+        self.t.setpos(self.xc + x, self.yc + y)
+        self.t.down()
