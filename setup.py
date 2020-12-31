@@ -11,6 +11,6 @@ setup(
     description='A utility for creating spiro graphs',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='',
+    url='https://github.com/nixbytes/pyspiro',
     packages=find_packages('pyspiro')
 )
