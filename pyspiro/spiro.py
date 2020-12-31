@@ -52,7 +52,7 @@ class Spiro:
 
         x = R * ((1 - k) * math.cos(a) + l * k * math.cos((1 - k) * a / k))
         y = R * ((1 - k) * math.sin(a) + l * k * math.sin((1 - k) * a / k))
-        
+
         These curves are called hypotrochoids and epitrochoids. 
 
         """
@@ -60,3 +60,12 @@ class Spiro:
         y = R * ((1 - k) * math.sin(a) + l * k * math.sin((1 - k) * a / k))
         self.t.setpos(self.xc + x, self.yc + y)
         self.t.down()
+
+    def draw(self):
+        R, k, l = self.R, self.k, self.l
+        for i in range(0, 360 * self.nRot + 1, self.step):
+            a = math.radians(i)
+            x = R * ((1 - k) * math.cos(a) + l * k * math.cos((1 - k) * a / k))
+            y = R * ((1 - k) * math.sin(a) + l * k * math.sin((1 - k) * a / k))
+            self.t.setpos(self.xc + x, self.yc + y)
+            self.t.hideturtle()
