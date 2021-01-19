@@ -1,3 +1,4 @@
+
 # a class for animating spirograph
 class Spiro_Animator:
     def __init__(self, N):
@@ -22,3 +23,32 @@ class Spiro_Animator:
 
         col = (random.random(), random.random(), random.random())
         return (xc, yc, col, R, r, l)
+
+    def update(self):
+        # update spiro and count completion on spiros
+        # also restart once completed
+        nComplete = 0
+        for spiro in self.spiros:
+            spiro.update()
+            if spiro.drawingComplete:
+                nComplete += 1
+        if nComplete == len(self.spiros):
+            self.restart()
+        turtle.ontimer(self.update, self.deltaT)
+
+    def toggleTurtle(self):
+        # turtle cursor on and off
+        for spiro in self.spiros:
+            if spiro.t.isvisible():
+                spiro.t.hideturtle()
+            else:
+                spiro.t.showturtle()
+
+    def saveDrawing():
+        # Drae an PNG and hide the cursor
+        # in addition get the tkinter canvas and
+        # Pillow mode to convert
+        turtle.hideturtle()
+        dateStr = (datetime.now()).strftime("%d%b%Y-%H%M%S")
+        fileName = "spiro-" + dateStr
+        print()
