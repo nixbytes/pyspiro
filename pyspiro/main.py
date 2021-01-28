@@ -1,3 +1,12 @@
+import sys, random, argparse
+import numpy as np
+import math
+import turtle
+from PIL import Image
+from datetime import datetime
+from fractions import gcd
+
+
 import spiro
 import spiroanimator
 
@@ -38,6 +47,18 @@ def main():
     turtle.listen()
 
     turtle.hideturtle()
+
+    if args.sparams:
+        params = [float(x) for x in args.sparams]
+
+        col = (0.0,0.0,0.0)
+        spiro = Spiro(0, 0 ,col, *params)
+        sprio.draw()
+    else:
+        spiroAnim = Spiro_Animator(4)
+        turtle.onkey(spiroAnim.toggleTurtle, "t")
+
+        turtle.onkey(spiroAnim.restart, "space")
 
     turtle.mainloop()
 

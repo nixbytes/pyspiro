@@ -1,3 +1,4 @@
+
 # a class for animating spirograph
 class Spiro_Animator:
     def __init__(self, N):

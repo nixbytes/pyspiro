@@ -1,9 +1,4 @@
 # A class that draws a Spirograph
-import turtle
-import math
-from datetime import datetime
-from fractions import gcd
-
 
 class Spiro:
     def __init__(self, xc, yc, col, R, r, l) -> None:
