@@ -1,4 +1,3 @@
-
 # a class for animating spirograph
 class Spiro_Animator:
     def __init__(self, N):
@@ -63,12 +62,12 @@ class Spiro_Animator:
         turtle.hideturtle()
         dateStr = (datetime.now()).strftime("%d%b%Y-%H%M%S")
         fileName = "spiro-" + dateStr
-        print('saving drawing to %s.eps/png' % fileName)
+        print("saving drawing to %s.eps/png" % fileName)
         # Save drawing to a postscipt image and pillow mod
         # to convert it to png
         canvas = turtle.getcanvas()
-        canvas.postscript(file = fileName + '.eps')
-        img = Image.open(fileName + '.eps')
-        img.save(fileName + '.png', 'png')
+        canvas.postscript(file=fileName + ".eps")
+        img = Image.open(fileName + ".eps")
+        img.save(fileName + ".png", "png")
 
         turtle.showturtle()

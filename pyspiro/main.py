@@ -51,8 +51,8 @@ def main():
     if args.sparams:
         params = [float(x) for x in args.sparams]
 
-        col = (0.0,0.0,0.0)
-        spiro = Spiro(0, 0 ,col, *params)
+        col = (0.0, 0.0, 0.0)
+        spiro = Spiro(0, 0, col, *params)
         sprio.draw()
     else:
         spiroAnim = Spiro_Animator(4)
