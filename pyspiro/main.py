@@ -5,7 +5,7 @@ import turtle
 from PIL import Image
 from datetime import datetime
 
-from fractions import gcd
+# from fractions import gcd
 
 
 # import spiro
@@ -41,7 +41,7 @@ class Spiro:
         Reduce r/R to the smallest form by Dividing with the
         GCD (Greatest Command Divisor )
         """
-        gcd_val = gcd(self.r, self.R)
+        gcd_val = math.gcd(self.r, self.R)
         self.nRot = self.r // self.R
 
         # Ratio of Radii
@@ -80,11 +80,29 @@ class Spiro:
             self.t.setpos(self.xc + x, self.yc + y)
             self.t.hideturtle()
 
+    def update(self):
+        if self.drawing_complete:
+            return
+        self.a += self.step
+        R, k, l = self.R, self.k, self.l
+
+        a = math.radians(self.a)
+        x = self.R * ((1 - k) * math.cos(a) + l * k * math.cos((1 - k) * a / k))
+        y = self.R * ((1 - k) * math.sin(a) - l * k * math.sin((1 - k) * a / k))
+        self.t.setpos(self.xc + x, self.yc + y)
+        if self.a >= 360 * self.nRot:
+            self.drawingComplete = True
+            self.t.hideturtle()
+
+    def clear(self):
+        self.t.clear()
+
 
 # a class for animating spirograph
 class Spiro_Animator:
     def __init__(self, N):
         # set the timer value in milliseconds and get the window dimensions
+        self.deltaT = 10
         self.width = turtle.window_width()
         self.height = turtle.window_height()
         self.spiros = []
@@ -155,6 +173,7 @@ class Spiro_Animator:
 
         turtle.showturtle()
 
+
 def main():
     print("generating spirograph...")
 
@@ -206,7 +225,6 @@ def main():
         turtle.onkey(spiroAnim.restart, "space")
 
     turtle.mainloop()
-
 
 
 if __name__ == "__main__":
