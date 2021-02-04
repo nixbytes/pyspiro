@@ -37,12 +37,22 @@ class Spiro:
         self.R = R
         self.r = r
         self.l = l
+
         """
         Reduce r/R to the smallest form by Dividing with the
         GCD (Greatest Command Divisor )
+
+
+        Changed in version 3.2: The Fraction constructor now accepts float and decimal.Decimal instances.
+
+        Changed in version 3.9: The math.gcd() function is now used to normalize the numerator and denominator. math.gcd() always return a int type. Previously, the GCD type depended on numerator and denominator.
+
         """
-        gcd_val = math.gcd(self.r, self.R)
-        self.nRot = self.r // self.R
+
+        # gcd_val = computer_gcd(self.r, self.R)
+        gcd_val = math.gcd(int(self.r), int(self.R))
+        # gcd_val = gcd(self.r, self.R)
+        self.nRot = self.r // gcd_val
 
         # Ratio of Radii
 
@@ -73,7 +83,7 @@ class Spiro:
 
     def draw(self):
         R, k, l = self.R, self.k, self.l
-        for i in range(0, 360 * self.nRot + 1, self.step):
+        for i in range(0, 360 * float(self.nRot) + 1, self.step):
             a = math.radians(i)
             x = R * ((1 - k) * math.cos(a) + l * k * math.cos((1 - k) * a / k))
             y = R * ((1 - k) * math.sin(a) + l * k * math.sin((1 - k) * a / k))
@@ -91,7 +101,7 @@ class Spiro:
         y = self.R * ((1 - k) * math.sin(a) - l * k * math.sin((1 - k) * a / k))
         self.t.setpos(self.xc + x, self.yc + y)
         if self.a >= 360 * self.nRot:
-            self.drawingComplete = True
+            self.drawing_complete = True
             self.t.hideturtle()
 
     def clear(self):
@@ -142,7 +152,7 @@ class Spiro_Animator:
         nComplete = 0
         for spiro in self.spiros:
             spiro.update()
-            if spiro.drawingComplete:
+            if spiro.drawing_complete:
                 nComplete += 1
         if nComplete == len(self.spiros):
             self.restart()
@@ -156,7 +166,7 @@ class Spiro_Animator:
             else:
                 spiro.t.showturtle()
 
-    def saveDrawing(self):
+    def saveDrawing():
         # Drae an PNG and hide the cursor
         # in addition get the tkinter canvas and
         # Pillow mode to convert
@@ -206,7 +216,7 @@ def main():
 
     turtle.title("Spirograph")
 
-    turtle.onkey("saveDrawing", "s")
+    turtle.onkey(Spiro_Animator.saveDrawing(), "s")
 
     turtle.listen()
 
@@ -217,7 +227,7 @@ def main():
 
         col = (0.0, 0.0, 0.0)
         spiro = Spiro(0, 0, col, *params)
-        sprio.draw()
+        spiro.draw()
     else:
         spiroAnim = Spiro_Animator(4)
         turtle.onkey(spiroAnim.toggleTurtle, "t")
