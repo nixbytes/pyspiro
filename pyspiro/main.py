@@ -52,7 +52,7 @@ class Spiro:
         # gcd_val = computer_gcd(self.r, self.R)
         gcd_val = math.gcd(int(self.r), int(self.R))
         # gcd_val = gcd(self.r, self.R)
-        self.nRot = self.r // gcd_val
+        self.nRot = int(self.r // gcd_val)
 
         # Ratio of Radii
 
@@ -83,7 +83,7 @@ class Spiro:
 
     def draw(self):
         R, k, l = self.R, self.k, self.l
-        for i in range(0, 360 * float(self.nRot) + 1, self.step):
+        for i in range(0, 360 * self.nRot + 1, self.step):
             a = math.radians(i)
             x = R * ((1 - k) * math.cos(a) + l * k * math.cos((1 - k) * a / k))
             y = R * ((1 - k) * math.sin(a) + l * k * math.sin((1 - k) * a / k))
