@@ -12,6 +12,9 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/nixbytes/pyspiro',
-    scripts=['pyspiro'],
-    packages=find_packages('pyspiro')
+    packages=find_packages('pyspiro'),
+    package_dir={'': 'pyspiro'},
+    entry_points={
+        'console_scripts':['pyspiro=pyspiro.main:main'],
+    }
 )

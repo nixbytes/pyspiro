@@ -1,0 +1,32 @@
+[project]
+name = "pyspiro"
+version = "2021.02.05"
+description = ""
+authors = [
+    {name = "linuxbytes", email = "real8686@gmail.com"},
+]
+dependencies = [
+    "numpy~=1.20",
+    "pillow",
+]
+dev-dependencies = []
+requires-python = ">=3.9"
+dynamic = ["classifiers"]
+license = {text = "MIT"}
+
+[project.urls]
+homepage = ""
+
+[tool]
+[tool.pdm]
+
+[[tool.pdm.source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[build-system]
+requires = ["pdm-pep517"]
+build-backend = "pdm.pep517.api"
+
