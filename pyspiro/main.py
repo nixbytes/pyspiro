@@ -5,13 +5,6 @@ import turtle
 from PIL import Image
 from datetime import datetime
 
-# from fractions import gcd
-
-
-# import spiro
-# import spiroanimator
-
-
 # A class that draws a Spirograph
 
 
@@ -237,5 +230,5 @@ def main():
     turtle.mainloop()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
