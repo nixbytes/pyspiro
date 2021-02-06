@@ -7,6 +7,7 @@ __pycache__/
 *.so
 .DS_Store
 __pypackages__
+.pdm.toml
 pyproject.toml
 
 # Distribution / packaging

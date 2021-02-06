@@ -10,9 +10,15 @@ sections = ["default"]
 version = "8.1.0"
 summary = "Python Imaging Library (Fork)"
 
+[[package]]
+name = "setuptools"
+sections = ["default"]
+version = "53.0.0"
+summary = "Easily download, build, install, upgrade, and uninstall Python packages"
+
 [metadata]
 lock_version = "2"
-content_hash = "sha256:5868f5b39a0c834cedd8405e949f7d10220278d05d0842d140d515464a89529f"
+content_hash = "sha256:72bab1fe9827aa59259ed84e3e0e7592b66fb2534a3d8de5282f9dc051ddc000"
 
 [metadata.files]
 "numpy 1.20.0" = [
@@ -74,4 +80,8 @@ content_hash = "sha256:5868f5b39a0c834cedd8405e949f7d10220278d05d0842d140d515464
     {file = "Pillow-8.1.0-pp37-pypy37_pp73-manylinux2010_x86_64.whl", hash = "sha256:81c3fa9a75d9f1afafdb916d5995633f319db09bd773cb56b8e39f1e98d90820"},
     {file = "Pillow-8.1.0-pp37-pypy37_pp73-win32.whl", hash = "sha256:b6f00ad5ebe846cc91763b1d0c6d30a8042e02b2316e27b05de04fa6ec831ec5"},
     {file = "Pillow-8.1.0.tar.gz", hash = "sha256:887668e792b7edbfb1d3c9d8b5d8c859269a0f0eba4dda562adb95500f60dbba"},
+]
+"setuptools 53.0.0" = [
+    {file = "setuptools-53.0.0-py3-none-any.whl", hash = "sha256:0e86620d658c5ca87a71a283bd308fcaeb4c33e17792ef6f081aec17c171347f"},
+    {file = "setuptools-53.0.0.tar.gz", hash = "sha256:1b18ef17d74ba97ac9c0e4b4265f123f07a8ae85d9cd093949fa056d3eeeead5"},
 ]

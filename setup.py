@@ -13,8 +13,9 @@ setup(
     long_description_content_type='text/markdown',
     url='https://github.com/nixbytes/pyspiro',
     packages=find_packages('pyspiro'),
-    package_dir={'': 'pyspiro'},
+    package_dir={'':'pyspiro'},
+    install_requires=[],
     entry_points={
-        'console_scripts':['pyspiro=pyspiro.main:main'],
-    }
+        'console_scripts': 'pyspiro=pyspiro.main:main',
+    },
 )
