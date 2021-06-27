@@ -109,7 +109,7 @@ class Spiro_Animator:
         self.width = turtle.window_width()
         self.height = turtle.window_height()
         self.spiros = []
-        for i in range(N):
+        for _ in range(N):
             # generate random parameters and set the spiro parameters
             rparams = self.genRandomParams()
             spiro = Spiro(*rparams)
@@ -230,5 +230,5 @@ def main():
     turtle.mainloop()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
