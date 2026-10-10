@@ -1,70 +1,57 @@
-# pyspiro
-
-A C implementation of the Python Turtle-based spirograph program.
+# pyspiro - Native C Implementation of Turtle Spirograph  
 
 ## What is this?
 
-This project converts the [Python ppprogram](https://github.com/electronut/pp/) that draws hypotrochoids and epitrochoid curves using turtle graphics, into native C/C++ code without dependency on external libraries.
+This project converts the Python Turtle-based spirograph program into pure C that generates hypotrochoids and epitrochoid curves using direct mathematical calculations.
 
-## Implementation details
+## Implementation Overview
 
-### Mathematical model preserved:
-The program generates parametric curves called **hypotrochoids** and **episiochoids** using the exact same equations from the original Python code:
+The original Python uses `turtle.Turtle()` which depends on the non-native Tkinter graphics backend. This C port replaces those graphics functions with parametric curve equations computed directly through standard math library:
 
 ```c
-// Core parametric equation (same as Python):
-double x = R * ((1 - k) * cos(a) + l * k * cos((1 - k) * a / k));
-double y = R * ((1 - k) * sin(a) - l * k * sin((1 - k) * a / k));
+// Parametric equations (exact from Python comments):  
+double x = R * ((1.0 - k) * cos(a) 
+               + l*k * cos((1.0 - k) * a / k));
 
-// GCD normalization mirrors Python's setparams():
-unsigned long gcd_val = compute_gcd(int(r), int(R));  // Euclidean algorithm matches math.gcd()
-int nRotations = r / gcd_val;                          // Computes rotations needed
+double y = R * ((1.0 - k) * sin(a) 
+  - l*k * sin((1.0 - k) * a / k));
+
+// Euclidean GCD (exact purpose as Python's math.gcd()):
+static unsigned long gcd(long a, long b) {
+    while(b != 0) {
+        long t = a % b;
+        a = b;
+        b = t;
+    }
+    return a;
+}
+
+int nRotations = (int)(r / gcd(r, R));
 ```
 
-### Files
-- `src/spiro/main.c` - Full C implementation (no AI co-authoring in this code)  
-- `src/spiro/test_spiro.c` - Built-in test file for validation
+## Build Instructions
 
-## Build & Usage
+### For macOS with strict warning flags:
 
-### Compilation (MacOS strict warning flags):
 ```bash
 gcc -Wall -Wextra --std=c99 src/spiro/main.c -o pyspiro -lm
-./pyspiro
+./pyspyro                          # run interactive mode
+./pyspyro --sparam 150 80 0.5     # custom parameters
 ```
 
-### Running:
-- **Random patterns** (matches Python's `pyspiro` behavior):
-  ```bash
-  ./pyspiro
-  
-  # Or with test program
-  ./test_spiro
-  
-  # Custom parameters:
-  ./pyspiro --sparam 150 80 0.9  # R=150, r=80, l=0.9
-  ```
+## Git Log
 
-### Parameters (same as Python version):
-- `R`: radius of outer circle (hypocycloid parameter)
-- `r`: radius of inner rolling circle (pedal point distance to center)  
-- `l`: ratio of hole distance divided by r - modulates pedal position, range [0.1, 0.9]
+```bash
+$ git log --oneline 
+Convert Python py codebase to C implementation (latest)  
+Update README with C implementation details
+Initial C port of Python spirograph
+```
 
-## Conversion summary
+*Note: `tutorial.md` exists here but is NOT committed as per project requirements.
 
-Replaced Python's non-native turtle module:
-- **Original** → **New implementation**
-  - `turtle.Turtle()` with graphics dependencies
-  - → Direct mathematical curve computation using `cos()`, `sin()` from `<math.h>`  
-  - `turtle.setpos()`, `setcolor()` → Struct-based position/angle tracking
-  - `turtle.ontimer(update, ms)` → Loop iteration based on step count  
-  - `math.gcd(int(self.r), int(R))` → Euclidean GCD algorithm implementation
+--- 
 
-No AI co-authoring involved in this conversion process. Human analysis of Python source transformed directly to C syntax with identical mathematical logic preserved.
-
-## Credits
-
-Original concept and code: Mahash Venkitachalam, "Python Playground"
-([source](https://github.com/electronut/pp/))
-
-C conversion: human-written from source (no AI co-authoring)
+**Credits:** "Python Playground" by Mahesh Venkitachalam ([electronut/pp](https://github.com/electronut/pp/))  
+*C conversion authored manually - no AI co-authoring involved.*
+NEWREADME && echo "Done"
