@@ -1,4 +1,4 @@
-# pyspiro - Native C Implementation of Turtle Spirograph  
+# Spiro - Native C Implementation of Turtle Spirograph  
 
 ## What is this?
 
