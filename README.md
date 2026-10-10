@@ -53,5 +53,3 @@ Initial C port of Python spirograph
 --- 
 
 **Credits:** "Python Playground" by Mahesh Venkitachalam ([electronut/pp](https://github.com/electronut/pp/))  
-*C conversion authored manually - no AI co-authoring involved.*
-NEWREADME && echo "Done"
