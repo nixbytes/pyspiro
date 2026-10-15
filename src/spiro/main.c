@@ -8,25 +8,44 @@
 #include <string.h>
 #include <math.h>
 #include <float.h>
+#include <time.h>
 
-#define DRAWING_STEP    5.0f      /* Degrees per step, from Python's "step = 5" line exactly */ 
-#define MAX_ROTATIONS   30        /* Maximum rotations before redraw loop (normalized by GCD)*/  
-#define MIN_RADIUS      25.0f     /* Minimum outer radius: from Python range constraint logic */
-#define MIN_INNER_R     10.0f     /* Minimum inner radius: from Python's randint(10, ...) floor()
+#define DRAWING_STEP    5.0f
+#define MAX_ROTATIONS   30
+#define MIN_RADIUS      25.0f
+#define MIN_INNER_R     10.0f
 
-typedef struct { float r; float g; float b; } rgb_color_t;  
+typedef struct { 
+    float r; 
+    float g; 
+    float b; 
+} rgb_color_t;
 
-/* ==================================================================
- * Spiro State Structure - Complete mapping to Python's Spiro class:
- * All parameters from setparams(self, xc, yc, col, R, r, l):
- */
 struct spiro_state {  
-    double xc, yc;               /* Center origin (canvas coordinates) */
-    float R_param;               /* Outer circle radius parameter */
-    float r_param;               /* Inner/rolling circle radius (pedal distance from center) */
-    float k_factor;              /* Ratio = r/R - amplitude modulation factor controlling curve complexity controlled by ratio*/  
-    float l_normalized;          /* Hole-to-center distance ratio normalized by inner radius (0.1-0.9 range from Python random.uniform(0.1, 0.9) logic in genRandomParams()*/   *
-    int nRotations_needed;       /* Full rotations needed: computed via GCD normalization matching Python's math.gcd() approach for integer floor ratios */  
-    unsigned int points_generated;     /* Points generated so far this animation frame */  
-    float angle_degrees;         /* Drawing position in degrees: starts at 0, increments by DRAWING_STEP_DEG each loop iteration incrementing */   *
-    rgb_color_t color_rgb;       /* RGB tuple [R,G,B] values in range [0.0-1.0] from Python's (random.random() pattern normalized)*/};
+    double xc, yc;
+    float R_param;
+    float r_param;
+    float k_factor;
+    float l_normalized;
+    int nRotations_needed;
+    unsigned int points_generated;
+    float angle_degrees;
+    rgb_color_t color_rgb;
+};
+
+// Forward declaration of init_spir from pyspiro.c
+void init_spir(struct spiro_state *s, int argc, char **argv);
+
+int main(int argc, char **argv) {
+    struct spiro_state state;
+    
+    // Initialize state
+    init_spir(&state, argc, argv);
+
+    printf("Spirogram initialized. Starting execution...\n");
+    
+    // The actual drawing logic would go here or be called here
+    // For now, we ensure it compiles and links.
+    
+    return 0;
+}
